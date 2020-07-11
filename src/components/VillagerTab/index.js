@@ -1,9 +1,11 @@
 import React from "react";
 import "./style.css";
 
-function VillagerTab() {
+function VillagerTab(props) {
     return (
-        <div></div>
+        <div className="villager-tab">
+            {props.children}
+        </div>
     );
 }
 
