@@ -15,10 +15,10 @@ class CurrentResidents extends Component {
             const villagers = [];
             for (let i = 0; i < Object.entries(response.data).length; i++) {
                 let villagerInfo = {
-                    "name": Object.entries(response.data)[i][1]["name"]["name-USen"],
-                    "species": Object.entries(response.data)[i][1]["species"],
-                    "personality": Object.entries(response.data)[i][1]["personality"],
-                    "icon": Object.entries(response.data)[i][1]["icon_uri"]
+                    "name": response.data[i]["name"]["name-USen"],
+                    "species": response.data[i]["species"],
+                    "personality": response.data[i]["personality"],
+                    "icon": response.data[i]["icon_uri"]
                 };
                 villagers.push(villagerInfo);
             }
