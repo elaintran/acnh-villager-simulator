@@ -7,9 +7,6 @@ function SearchBar(props) {
             <i className="fas fa-search"></i>
             <input type="text" name="query" placeholder={props.children} onChange={props.change} required />
         </form>
-        // <div className="search-bar">
-        //     {props.children}
-        // </div>
     );
 }
 

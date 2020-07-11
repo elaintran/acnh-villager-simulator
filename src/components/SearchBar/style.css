@@ -16,7 +16,7 @@
 }
 
 /*change placeholder font and color*/
-.search input::-webkit-input-placeholder {
+.search input, .search input::-webkit-input-placeholder {
     color: #55a290;
     font-family: "Nunito", sans-serif;
     font-size: 15px;
