@@ -7,29 +7,32 @@ import "./style.css";
 class CurrentResidents extends Component {
     state = {
         query: "",
-        villagers: this.props.villagers,
+        allVillagers: this.props.villagers,
         currentResidents: []
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.villagers !== prevProps.villagers) {
-            this.setState({ villagers: this.props.villagers});
-            console.log(this.props.villagers);
+            this.setState({ allVillagers: this.props.villagers});
         }
     }
 
-    // findResidents = () => {
-    // }
+    findResidents = query => {
+        for (let i = 0; i < this.state.allVillagers.length; i++) {
+            if (query === this.state.allVillagers[i].name) {
+                console.log(this.state.allVillagers[i]);
+            }
+        }
+    }
 
     handleInput = event => {
-        // let value = event.target.value;
-        // this.setState({ query: value });
-        // console.log("hi");
+        let value = event.target.value;
+        this.setState({ query: value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.findResidents();
+        this.findResidents(this.state.query);
     }
 
     render() {
