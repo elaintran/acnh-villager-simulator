@@ -9,5 +9,5 @@ The campsite method has a 50% chance of rolling for a villager personality type 
 
 ## Technologies Used
 * [React](https://reactjs.org/)
-* [ACNH API](http://acnhapi.com/)
 * [Axios](https://www.npmjs.com/package/axios)
+* [ACNH API](http://acnhapi.com/)

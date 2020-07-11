@@ -1,31 +1,25 @@
 import React, { Component } from "react";
 import SearchBar from "../SearchBar";
 // import VillagerTab from "../VillagerTab";
-import API from "../../utils/API.js";
+// import API from "../../utils/API.js";
 import "./style.css";
 
 class CurrentResidents extends Component {
     state = {
         query: "",
-        results: []
+        villagers: this.props.villagers,
+        currentResidents: []
     }
 
-    findResidents = () => {
-        API.findVillagers().then(response => {
-            const villagers = [];
-            for (let i = 0; i < Object.entries(response.data).length; i++) {
-                let villagerInfo = {
-                    "name": response.data[i]["name"]["name-USen"],
-                    "species": response.data[i]["species"],
-                    "personality": response.data[i]["personality"],
-                    "icon": response.data[i]["icon_uri"]
-                };
-                villagers.push(villagerInfo);
-            }
-            this.setState({ results: villagers });
-            console.log(this.state.results);
-        });
+    componentDidUpdate(prevProps) {
+        if (this.props.villagers !== prevProps.villagers) {
+            this.setState({ villagers: this.props.villagers});
+            console.log(this.props.villagers);
+        }
     }
+
+    // findResidents = () => {
+    // }
 
     handleInput = event => {
         // let value = event.target.value;

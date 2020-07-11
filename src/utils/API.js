@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-    findVillagers: () => {
+    villagerInfo: () => {
         return axios.get(`https://acnhapi.com/v1a/villagers/`);
     }
 }
