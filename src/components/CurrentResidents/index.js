@@ -7,7 +7,6 @@ import "./style.css";
 
 class CurrentResidents extends Component {
     state = {
-        query: "",
         allVillagers: this.props.villagers,
         villagerNames: [{
             id: 0,
@@ -42,27 +41,27 @@ class CurrentResidents extends Component {
         this.setState({ villagerNames: villagerObj });
     }
 
-    findResidents = query => {
-        // let name = query.replace(/\s/g, '').toLowerCase().split(" ");
-        // let newName = name[0].charAt(0).toUpperCase() + name[0].slice(1);
-        // if (newName === "O'hare") {
-        //     newName = "O'Hare";
-        // }
-        // for (let i = 0; i < this.state.allVillagers.length; i++) {
-        //     if (newName === this.state.allVillagers[i].name) {
-        //         console.log(this.state.allVillagers[i]);
-        //     }
-        // }
+    findResidents = value => {
+        if (this.state.currentResidents.length < 10) {
+            for (let i = 0; i < this.state.allVillagers.length; i++) {
+                if (value === this.state.allVillagers[i].name) {
+                    this.setState({currentResidents: this.state.currentResidents.concat(this.state.allVillagers[i].name)});
+                }
+            }    
+        } else {
+            console.log("You have too many residents.");
+        }
     }
 
     handleInput = event => {
         let value = event.target.value;
-        this.setState({ query: value });
+        this.setState({ value: value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.findResidents(this.state.query);
+        // console.log(this.state.value);
+        // this.findResidents(this.state.value);
     }
 
     render() {
@@ -80,25 +79,9 @@ class CurrentResidents extends Component {
                 </div>
                 }
                 value={this.state.value}
-                onChange={e => this.setState({ value: e.target.value })}
-                onSelect={value => this.setState({ value })}
+                onChange={this.handleInput}
+                onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
           />    
-            // <Autocomplete
-            //     getItemValue={(item) => item.label}
-            //     items={this.state.villagerNames}
-            //     renderItem={(item, isHighlighted) =>
-            //         <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-            //         {item.label}
-            //         </div>
-            //     }
-                // value={this.state.query}
-                // onChange={this.handleInput}
-                // onSelect={query => this.setState({ query })}
-            // />
-            // <SearchBar
-            //     options={this.state.villagerNames}
-            // />
-                /* <SearchBar change={this.handleInput} submit={this.handleSubmit}>Enter current residents...</SearchBar> */
         );
     }
 }
