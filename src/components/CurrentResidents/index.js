@@ -42,7 +42,6 @@ class CurrentResidents extends Component {
     }
 
     findResidents = value => {
-        console.log(this.state.currentResidents);
         if (this.state.currentResidents.length < 10) {
             for (let i = 0; i < this.state.allVillagers.length; i++) {
                 if (value === this.state.allVillagers[i].name) {
@@ -52,17 +51,14 @@ class CurrentResidents extends Component {
         } else {
             console.log("You have too many residents.");
         }
+        //need to prevent the same villagers from being added
+        //need to remove the villagers added from the autocomplete
+        //need to fix bug when searching for villagers too quickly
     }
 
     handleInput = event => {
         let value = event.target.value;
         this.setState({ value: value });
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        // console.log(this.state.value);
-        // this.findResidents(this.state.value);
     }
 
     render() {
