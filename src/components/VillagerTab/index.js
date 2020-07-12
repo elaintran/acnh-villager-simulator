@@ -4,7 +4,8 @@ import "./style.css";
 function VillagerTab(props) {
     return (
         <div className="villager-tab">
-            {props.children}
+            <img src={props.icon} alt={props.villager} width="30px" / >
+            {props.villager}
         </div>
     );
 }

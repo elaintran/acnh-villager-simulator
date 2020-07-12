@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
 // import SearchBar from "../SearchBar";
-// import VillagerTab from "../VillagerTab";
+import VillagerTab from "../VillagerTab";
 // import API from "../../utils/API.js";
 import "./style.css";
 
@@ -42,10 +42,11 @@ class CurrentResidents extends Component {
     }
 
     findResidents = value => {
+        console.log(this.state.currentResidents);
         if (this.state.currentResidents.length < 10) {
             for (let i = 0; i < this.state.allVillagers.length; i++) {
                 if (value === this.state.allVillagers[i].name) {
-                    this.setState({currentResidents: this.state.currentResidents.concat(this.state.allVillagers[i].name)});
+                    this.setState({currentResidents: this.state.currentResidents.concat(this.state.allVillagers[i])});
                 }
             }    
         } else {
@@ -66,22 +67,28 @@ class CurrentResidents extends Component {
 
     render() {
         return (
-            <Autocomplete
-                items={this.state.villagerNames}
-                shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                getItemValue={item => item.label}
-                renderItem={(item, highlighted) =>
-                <div
-                    key={item.id}
-                    style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
-                >
-                    {item.label}
-                </div>
-                }
-                value={this.state.value}
-                onChange={this.handleInput}
-                onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
-          />    
+            <div>
+                <Autocomplete
+                    items={this.state.villagerNames}
+                    shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                    getItemValue={item => item.label}
+                    renderItem={(item, highlighted) =>
+                    <div
+                        key={item.id}
+                        style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                    >
+                        {item.label}
+                    </div>
+                    }
+                    value={this.state.value}
+                    onChange={this.handleInput}
+                    onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
+                    inputProps={{ placeholder: "Enter current residents..." }}
+                />
+                {this.state.currentResidents.map(residents => (
+                    <VillagerTab villager={residents.name} icon={residents.icon} />
+                ))}
+            </div>  
         );
     }
 }
