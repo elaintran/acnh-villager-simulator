@@ -51,9 +51,8 @@ class CurrentResidents extends Component {
         } else {
             console.log("You have too many residents.");
         }
-        //need to prevent the same villagers from being added
-        //need to remove the villagers added from the autocomplete
-        //need to fix bug when searching for villagers too quickly
+        // need to prevent the same villagers from being added
+        // need to remove the villagers added from the autocomplete
     }
 
     handleInput = event => {
@@ -63,7 +62,8 @@ class CurrentResidents extends Component {
 
     render() {
         return (
-            <div>
+            <div className="search-container">
+                {/* <i class="fa fa-search" aria-hidden="true"></i> */}
                 <Autocomplete
                     items={this.state.villagerNames}
                     shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
@@ -71,15 +71,16 @@ class CurrentResidents extends Component {
                     renderItem={(item, highlighted) =>
                     <div
                         key={item.id}
-                        style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                        style={{ backgroundColor: highlighted ? '#c4eede' : 'transparent', padding: "5px 10px", borderBottomStyle: "dashed"}}
                     >
                         {item.label}
                     </div>
                     }
+                    menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px"}}
                     value={this.state.value}
                     onChange={this.handleInput}
                     onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
-                    inputProps={{ placeholder: "Enter current residents..." }}
+                    inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                 />
                 {this.state.currentResidents.map(residents => (
                     <VillagerTab villager={residents.name} icon={residents.icon} />

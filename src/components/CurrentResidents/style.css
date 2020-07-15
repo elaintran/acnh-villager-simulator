@@ -1,0 +1,14 @@
+.search-container {
+    color: #55a290;
+    padding: 8px 0;
+    border-radius: 10px;
+}
+
+.search-container input::placeholder {
+    color: #55a290;
+}
+
+.search-container .fa-search {
+    font-size: 13px;
+    margin-left: 14px;
+}
