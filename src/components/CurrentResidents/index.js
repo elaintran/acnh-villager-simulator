@@ -43,16 +43,17 @@ class CurrentResidents extends Component {
 
     findResidents = value => {
         if (this.state.currentResidents.length < 10) {
-            for (let i = 0; i < this.state.allVillagers.length; i++) {
-                if (value === this.state.allVillagers[i].name) {
-                    this.setState({currentResidents: this.state.currentResidents.concat(this.state.allVillagers[i])});
-                }
-            }    
-        } else {
-            console.log("You have too many residents.");
+            this.state.allVillagers.map(villagers =>
+                (value === villagers.name) ?
+                this.setState({ currentResidents: this.state.currentResidents.concat(villagers)}, () => this.removeVillagers(value) ) : false)
         }
-        // need to prevent the same villagers from being added
-        // need to remove the villagers added from the autocomplete
+    }
+
+    removeVillagers = value => {
+        const villagerArr = [...this.state.villagerNames];
+        let index = this.state.villagerNames.map(villagers => villagers.label).indexOf(value);
+        villagerArr.splice(index, 1);
+        this.setState({ villagerNames: villagerArr });
     }
 
     handleInput = event => {
@@ -82,8 +83,8 @@ class CurrentResidents extends Component {
                     onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
                     inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                 />
-                {this.state.currentResidents.map(residents => (
-                    <VillagerTab villager={residents.name} icon={residents.icon} />
+                {this.state.currentResidents.map((residents, index) => (
+                    <VillagerTab id={index} villager={residents.name} icon={residents.icon} />
                 ))}
             </div>  
         );
