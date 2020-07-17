@@ -77,7 +77,7 @@ class CurrentResidents extends Component {
                         {item.label}
                     </div>
                     }
-                    menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px"}}
+                    menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
                     value={this.state.value}
                     onChange={this.handleInput}
                     onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
