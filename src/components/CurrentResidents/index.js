@@ -64,7 +64,6 @@ class CurrentResidents extends Component {
     render() {
         return (
             <div className="search-container">
-                {/* <i class="fa fa-search" aria-hidden="true"></i> */}
                 <Autocomplete
                     items={this.state.villagerNames}
                     shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
