@@ -49,11 +49,32 @@ class CurrentResidents extends Component {
         }
     }
 
+    //remove villager listing from all villagers to prevent adding the same villager
     removeVillagers = value => {
+        // console.log(this.state.currentResidents);
         const villagerArr = [...this.state.villagerNames];
         let index = this.state.villagerNames.map(villagers => villagers.label).indexOf(value);
         villagerArr.splice(index, 1);
         this.setState({ villagerNames: villagerArr });
+    }
+
+    addVillagers = name => {
+        const villagerArr = [...this.state.villagerNames];
+        const villagerNames = villagerArr.map(villager => villager.label);
+        villagerNames.push(name);
+        const updatedNames = villagerNames.sort();
+        const villagerObj = [];
+        for (let i = 0; i < updatedNames.length; i++) {
+            villagerObj.push({id: i, label: updatedNames[i]});
+        }
+        this.setState({ villagerNames: villagerObj });
+    }
+
+    removeResident = (index, name) => {
+        const residentArr = [...this.state.currentResidents];
+        residentArr.splice(index, 1);
+        this.setState({ currentResidents: residentArr });
+        this.addVillagers(name);
     }
 
     handleInput = event => {
@@ -83,7 +104,13 @@ class CurrentResidents extends Component {
                     inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                 />
                 {this.state.currentResidents.map((residents, index) => (
-                    <VillagerTab id={index} villager={residents.name} icon={residents.icon} />
+                    <VillagerTab
+                        id={index}
+                        index={index}
+                        villager={residents.name}
+                        icon={residents.icon}
+                        remove={this.removeResident}
+                    />
                 ))}
             </div>  
         );

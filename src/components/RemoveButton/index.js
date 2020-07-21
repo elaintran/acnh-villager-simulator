@@ -3,8 +3,8 @@ import "./style.css";
 
 function RemoveButton(props) {
     return (
-        <div className="remove-circle">
-            <i class="fa fa-times" aria-hidden="true"></i>
+        <div className="remove-circle" onClick={() => props.remove(props.index, props.villager)}>
+            <i className="fa fa-times" aria-hidden="true"></i>
         </div>
     );
 }

@@ -7,7 +7,7 @@ function VillagerTab(props) {
         <div className="villager-tab">
             <img src={props.icon} alt={props.villager} width="30px" className="villager-icon" / >
             {props.villager}
-            <RemoveButton/>
+            <RemoveButton remove={props.remove} index={props.index} villager={props.villager} />
         </div>
     );
 }
