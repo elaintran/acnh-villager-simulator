@@ -1,4 +1,5 @@
 import React from "react";
+import RemoveButton from "../RemoveButton";
 import "./style.css";
 
 function VillagerTab(props) {
@@ -6,6 +7,7 @@ function VillagerTab(props) {
         <div className="villager-tab">
             <img src={props.icon} alt={props.villager} width="30px" className="villager-icon" / >
             {props.villager}
+            <RemoveButton/>
         </div>
     );
 }

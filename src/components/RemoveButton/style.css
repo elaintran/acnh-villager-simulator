@@ -1,0 +1,17 @@
+.remove-circle {
+    background-color: white;
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    border-radius: 50%;
+    padding: 0 5px;
+}
+
+.remove-circle:hover {
+    cursor: pointer;
+}
+
+.remove-circle i {
+    color: black;
+    font-size: 14px;
+}
