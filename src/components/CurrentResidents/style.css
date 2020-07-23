@@ -1,7 +1,11 @@
+.container {
+    display: flex;
+}
+
 .search-container {
     color: #55a290;
     padding: 8px 0;
-    border-radius: 10px;
+    margin-right: 20px;
 }
 
 .search-container input::placeholder {
