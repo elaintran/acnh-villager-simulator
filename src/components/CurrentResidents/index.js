@@ -12,9 +12,10 @@ class CurrentResidents extends Component {
             id: 0,
             label: ""
         }],
-        currentResidents: [],
-        value: "",
-        dreamies: []
+        residents: [],
+        dreamies: [],
+        residentValue: "",
+        dreamieValue: ""
     }
 
     componentDidMount() {
@@ -43,10 +44,10 @@ class CurrentResidents extends Component {
     }
 
     findResidents = value => {
-        if (this.state.currentResidents.length < 10) {
+        if (this.state.residents.length < 10) {
             this.state.allVillagers.map(villagers =>
                 (value === villagers.name) ?
-                this.setState({ currentResidents: this.state.currentResidents.concat(villagers)}, () => this.removeVillagers(value) ) : false)
+                this.setState({ residents: this.state.residents.concat(villagers)}, () => this.removeVillagers(value) ) : false)
         }
     }
 
@@ -78,15 +79,20 @@ class CurrentResidents extends Component {
     }
 
     removeResident = (index, name) => {
-        const residentArr = [...this.state.currentResidents];
+        const residentArr = [...this.state.residents];
         residentArr.splice(index, 1);
-        this.setState({ currentResidents: residentArr });
+        this.setState({ residents: residentArr });
         this.addVillagers(name);
     }
 
     handleInput = event => {
         let value = event.target.value;
-        this.setState({ value: value });
+        this.setState({ residentValue: value });
+    }
+
+    handleDreamieInput = event => {
+        let value = event.target.value;
+        this.setState({ dreamieValue: value });
     }
 
     render() {
@@ -106,12 +112,12 @@ class CurrentResidents extends Component {
                         </div>
                         }
                         menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
-                        value={this.state.value}
+                        value={this.state.residentValue}
                         onChange={this.handleInput}
-                        onSelect={value => this.setState({ value }, () => this.findResidents(this.state.value))}
+                        onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
                         inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                     />
-                    {this.state.currentResidents.map((residents, index) => (
+                    {this.state.residents.map((residents, index) => (
                         <VillagerTab
                             id={index}
                             index={index}
@@ -135,9 +141,9 @@ class CurrentResidents extends Component {
                         </div>
                         }
                         menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
-                        value={this.state.value}
-                        onChange={this.handleInput}
-                        onSelect={value => this.setState({ value }, () => this.findDreamies(this.state.value))}
+                        value={this.state.dreamieValue}
+                        onChange={this.handleDreamieInput}
+                        onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}
                         inputProps={{ placeholder: "Enter dreamies...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                     />
                     {this.state.dreamies.map((residents, index) => (
