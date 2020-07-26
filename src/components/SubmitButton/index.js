@@ -1,9 +1,11 @@
 import React from "react";
 import "./style.css";
 
-function SubmitButton() {
+function SubmitButton(props) {
     return (
-        <div></div>
+        <div className="submit" onClick={() => props.click()}>
+            Time for Take Off!
+        </div>
     );
 }
 

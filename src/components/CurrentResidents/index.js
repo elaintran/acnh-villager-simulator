@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
 // import SearchBar from "../SearchBar";
+import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
 // import API from "../../utils/API.js";
 import "./style.css";
@@ -95,6 +96,28 @@ class CurrentResidents extends Component {
         this.setState({ dreamieValue: value });
     }
 
+    searchDreamies = () => {
+        const species = ["Alligator", "Anteater", "Bear", "Bird", "Bull", "Cat",
+                        "Chicken", "Cow", "Cub", "Deer", "Dog", "Duck", "Eagle",
+                        "Elephant", "Frog", "Goat", "Gorilla", "Hamster", "Hippo",
+                        "Horse", "Kangaroo", "Koala", "Lion", "Monkey", "Mouse",
+                        "Octopus", "Ostrich", "Penguin", "Pig", "Rabbit", "Rhino",
+                        "Sheep", "Squirrel", "Tiger", "Wolf"];
+        const allVillagers = [...this.state.allVillagers];
+        const villagerNames = [...this.state.villagerNames];
+        const villagerInfo = [];
+        for (let i = 0; i < allVillagers.length; i++) {
+            for (let j = 0; j < villagerNames.length; j++) {
+                if (allVillagers[i].name === villagerNames[j].label) {
+                    villagerInfo.push(allVillagers[i]);
+                }
+            }
+        }
+        let speciesIndex = Math.floor(Math.random() * species.length);
+        console.log(villagerInfo);
+        console.log(species[speciesIndex]);
+    }
+
     render() {
         return (
             <div className="container">
@@ -156,6 +179,7 @@ class CurrentResidents extends Component {
                         />
                     ))}
                 </div>
+                <SubmitButton click={this.searchDreamies} />
             </div>
         );
     }
