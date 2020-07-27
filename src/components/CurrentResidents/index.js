@@ -147,7 +147,7 @@ class CurrentResidents extends Component {
                                 {item.name}
                             </div>
                             }
-                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
+                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto", position: "absolute", zIndex: 2}}
                             value={this.state.residentValue}
                             onChange={this.handleResidentInput}
                             onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
@@ -179,7 +179,7 @@ class CurrentResidents extends Component {
                                 {item.name}
                             </div>
                             }
-                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
+                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto", position: "absolute", zIndex: 2}}
                             value={this.state.dreamieValue}
                             onChange={this.handleDreamieInput}
                             onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}

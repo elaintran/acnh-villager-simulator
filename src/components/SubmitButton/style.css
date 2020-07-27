@@ -1,3 +1,13 @@
 .submit {
     background-color: #35ba9b;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    width: calc(50% - 40px);
+    margin: auto;
+    padding: 10px;
+}
+
+.submit:hover {
+    cursor: pointer;
 }
