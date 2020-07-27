@@ -36,58 +36,70 @@ class CurrentResidents extends Component {
         }
     }
 
+    handleResidentInput = event => {
+        this.setState({ residentValue: event.target.value });
+    }
+
+    handleDreamieInput = event => {
+        this.setState({ dreamieValue: event.target.value });
+    }
+
     findResidents = value => {
+        //only allow 9 residents to be added because an empty plot is needed to villager search
         if (this.state.residents.length < 10) {
-            this.state.allVillagers.map(villagers =>
+            this.state.filteredVillagers.map(villagers =>
                 (value === villagers.name) ?
                 this.setState({
                     residents: this.state.residents.concat(villagers),
-                    residentValue: ""},
+                    residentValue: "" },
                     () => this.removeVillagers(value) ) : false)
         }
     }
 
     findDreamies = value => {
-        this.state.allVillagers.map(villagers => 
-            (value === villagers.name) ?
-            this.setState({ dreamies: this.state.dreamies.concat(villagers) }) : false);
+        this.state.filteredVillagers.map(villagers => 
+            (value === villagers.name) ? 
+            this.setState({
+                dreamies: this.state.dreamies.concat(villagers),
+                dreamieValue: "" },
+                () => this.removeVillagers(value)) : false);
     }
 
     //remove villager listing from all villagers to prevent adding the same villager
     removeVillagers = value => {
         const villagerArr = [...this.state.filteredVillagers];
-        let index = this.state.filteredVillagers.map(villagers => villagers.label).indexOf(value);
+        let index = this.state.filteredVillagers.map(villagers => villagers.name).indexOf(value);
         villagerArr.splice(index, 1);
         this.setState({ filteredVillagers: villagerArr });
     }
 
-    addVillagers = name => {
-        const villagerArr = [...this.state.filteredVillagers];
-        const villagerNames = villagerArr.map(villager => villager.label);
-        villagerNames.push(name);
-        const updatedNames = villagerNames.sort();
-        const villagerObj = [];
-        for (let i = 0; i < updatedNames.length; i++) {
-            villagerObj.push({id: i, label: updatedNames[i]});
+    addVillagers = (id, name, species, personality, icon) => {
+        const villagerInfo = {
+            name: name,
+            species: species,
+            personality: personality,
+            icon: icon,
+            id: id
         }
-        this.setState({ villagerNames: villagerObj });
+        const villagerArr = [...this.state.filteredVillagers];
+        villagerArr.push(villagerInfo);
+        villagerArr.sort((a, b) => (a.name > b.name) ? 1 : -1);
+        this.setState({ filteredVillagers: villagerArr });
     }
 
-    removeResident = (index, name) => {
-        const residentArr = [...this.state.residents];
-        residentArr.splice(index, 1);
-        this.setState({ residents: residentArr });
-        this.addVillagers(name);
-    }
-
-    handleInput = event => {
-        let value = event.target.value;
-        this.setState({ residentValue: value });
-    }
-
-    handleDreamieInput = event => {
-        let value = event.target.value;
-        this.setState({ dreamieValue: value });
+    removeVillager = (id, name, species, personality, icon, search) => {
+        if (search === "residents") {
+            const residentArr = [...this.state.residents];
+            const residentIndex = residentArr.map(resident => resident.name).indexOf(name);
+            residentArr.splice(residentIndex, 1);
+            this.setState({ residents: residentArr });
+        } else if (search === "dreamie") {
+            const dreamieArr = [...this.state.dreamies];
+            const dreamieIndex = dreamieArr.map(dreamie => dreamie.name).indexOf(name);
+            dreamieArr.splice(dreamieIndex, 1);
+            this.setState({ dreamies: dreamieArr });
+        }
+        this.addVillagers(id, name, species, personality, icon);
     }
 
     searchDreamies = () => {
@@ -136,17 +148,20 @@ class CurrentResidents extends Component {
                         }
                         menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
                         value={this.state.residentValue}
-                        onChange={this.handleInput}
+                        onChange={this.handleResidentInput}
                         onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
                         inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                     />
                     {this.state.residents.map((residents, index) => (
                         <VillagerTab
                             id={index}
-                            index={index}
+                            index={residents.id}
                             villager={residents.name}
+                            species={residents.species}
+                            personality={residents.personality}
                             icon={residents.icon}
-                            remove={this.removeResident}
+                            search="residents"
+                            remove={this.removeVillager}
                         />
                     ))}
                 </div>  
@@ -169,13 +184,16 @@ class CurrentResidents extends Component {
                         onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}
                         inputProps={{ placeholder: "Enter dreamies...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
                     />
-                    {this.state.dreamies.map((residents, index) => (
+                    {this.state.dreamies.map((dreamie, index) => (
                         <VillagerTab
                             id={index}
-                            index={index}
-                            villager={residents.name}
-                            icon={residents.icon}
-                            remove={this.removeResident}
+                            index={dreamie.id}
+                            villager={dreamie.name}
+                            species={dreamie.species}
+                            personality={dreamie.personality}
+                            icon={dreamie.icon}
+                            search="dreamie"
+                            remove={this.removeVillager}
                         />
                     ))}
                 </div>
