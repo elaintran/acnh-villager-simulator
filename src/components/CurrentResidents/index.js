@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
-// import SearchBar from "../SearchBar";
 import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
-// import API from "../../utils/API.js";
 import "./style.css";
 
 class CurrentResidents extends Component {
     state = {
         allVillagers: this.props.villagers,
-        villagerNames: [{
-            id: 0,
-            label: ""
-        }],
+        filteredVillagers: [],
         residents: [],
         dreamies: [],
         residentValue: "",
@@ -20,35 +15,35 @@ class CurrentResidents extends Component {
     }
 
     componentDidMount() {
-        this.getVillagerNames();
+        this.sortVillagers();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.villagers !== prevProps.villagers) {
-            this.setState({ allVillagers: this.props.villagers}, () => this.getVillagerNames());
+            this.setState({ allVillagers: this.props.villagers}, () => this.sortVillagers());
         }
     }
 
-    getVillagerNames = () => {
-        let villagerNames = [];
+    //sort villagers in alphabetical order
+    sortVillagers = () => {
+        let villagers = [...this.state.allVillagers];
         if (this.state.allVillagers.length !== 0) {
-            for (let i = 0; i < this.state.allVillagers.length; i++) {
-                villagerNames.push(this.state.allVillagers[i].name);
+            villagers.sort((a, b) => (a.name > b.name) ? 1 : -1);
+            for (let i = 0; i < villagers.length; i++) {
+                villagers[i].id = i;
             }
+            this.setState({ filteredVillagers: villagers });
         }
-        villagerNames = villagerNames.sort();
-        let villagerObj = [];
-        for (let i = 0; i < villagerNames.length; i++) {
-            villagerObj.push({id: i, label: villagerNames[i]});
-        }
-        this.setState({ villagerNames: villagerObj });
     }
 
     findResidents = value => {
         if (this.state.residents.length < 10) {
             this.state.allVillagers.map(villagers =>
                 (value === villagers.name) ?
-                this.setState({ residents: this.state.residents.concat(villagers)}, () => this.removeVillagers(value) ) : false)
+                this.setState({
+                    residents: this.state.residents.concat(villagers),
+                    residentValue: ""},
+                    () => this.removeVillagers(value) ) : false)
         }
     }
 
@@ -60,15 +55,14 @@ class CurrentResidents extends Component {
 
     //remove villager listing from all villagers to prevent adding the same villager
     removeVillagers = value => {
-        // console.log(this.state.currentResidents);
-        const villagerArr = [...this.state.villagerNames];
-        let index = this.state.villagerNames.map(villagers => villagers.label).indexOf(value);
+        const villagerArr = [...this.state.filteredVillagers];
+        let index = this.state.filteredVillagers.map(villagers => villagers.label).indexOf(value);
         villagerArr.splice(index, 1);
-        this.setState({ villagerNames: villagerArr });
+        this.setState({ filteredVillagers: villagerArr });
     }
 
     addVillagers = name => {
-        const villagerArr = [...this.state.villagerNames];
+        const villagerArr = [...this.state.filteredVillagers];
         const villagerNames = villagerArr.map(villager => villager.label);
         villagerNames.push(name);
         const updatedNames = villagerNames.sort();
@@ -129,15 +123,15 @@ class CurrentResidents extends Component {
             <div className="container">
                 <div className="search-container">
                     <Autocomplete
-                        items={this.state.villagerNames}
-                        shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                        getItemValue={item => item.label}
+                        items={this.state.filteredVillagers}
+                        shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                        getItemValue={item => item.name}
                         renderItem={(item, highlighted) =>
                         <div
                             key={item.id}
                             style={{ backgroundColor: highlighted ? '#c4eede' : 'transparent', padding: "5px 10px", borderBottomStyle: "dashed"}}
                         >
-                            {item.label}
+                            {item.name}
                         </div>
                         }
                         menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
@@ -158,15 +152,15 @@ class CurrentResidents extends Component {
                 </div>  
                 <div className="search-container">
                     <Autocomplete
-                        items={this.state.villagerNames}
-                        shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                        getItemValue={item => item.label}
+                        items={this.state.filteredVillagers}
+                        shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                        getItemValue={item => item.name}
                         renderItem={(item, highlighted) =>
                         <div
                             key={item.id}
                             style={{ backgroundColor: highlighted ? '#c4eede' : 'transparent', padding: "5px 10px", borderBottomStyle: "dashed"}}
                         >
-                            {item.label}
+                            {item.name}
                         </div>
                         }
                         menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto"}}
