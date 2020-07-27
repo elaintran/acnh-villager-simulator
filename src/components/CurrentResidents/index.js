@@ -114,8 +114,14 @@ class CurrentResidents extends Component {
             }
         }
         let speciesIndex = Math.floor(Math.random() * species.length);
-        console.log(villagerInfo);
-        console.log(species[speciesIndex]);
+        let chosenSpecies = [];
+        for (let i = 0; i < villagerInfo.length; i++) {
+            if (villagerInfo[i].species === species[speciesIndex]) {
+                chosenSpecies.push(villagerInfo[i]);
+            }
+        }
+        let chosenIndex = Math.floor(Math.random() * chosenSpecies.length);
+        console.log(chosenSpecies[chosenIndex]);
     }
 
     render() {
