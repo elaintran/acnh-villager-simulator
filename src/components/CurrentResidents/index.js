@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
 import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
+import NMT from "../NMT";
+import NumberInput from "../NumberInput";
 import "./style.css";
 
 class CurrentResidents extends Component {
@@ -142,16 +144,41 @@ class CurrentResidents extends Component {
                             renderItem={(item, highlighted) =>
                             <div
                                 key={item.id}
-                                style={{ backgroundColor: highlighted ? '#c4eede' : 'transparent', padding: "5px 10px", borderBottomStyle: "dashed"}}
+                                style={{
+                                    backgroundColor: highlighted ? '#c4eede' : 'transparent',
+                                    padding: "5px 10px",
+                                    borderBottomStyle: "dashed"
+                                }}
                             >
                                 {item.name}
                             </div>
                             }
-                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto", position: "absolute", zIndex: 2}}
+                            menuStyle={{
+                                background: "#e2faf1",
+                                color: "#55a290",
+                                marginTop: "0px",
+                                maxHeight: "50vh",
+                                overflow: "auto",
+                                position: "absolute",
+                                zIndex: 2,
+                                left: "10px"
+                            }}
                             value={this.state.residentValue}
                             onChange={this.handleResidentInput}
                             onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
-                            inputProps={{ placeholder: "Enter current residents...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
+                            inputProps={{
+                                placeholder: "Enter current residents...",
+                                style: {
+                                    background: "#e2faf1",
+                                    border: 0,
+                                    color: "#55a290",
+                                    padding: "0 10px 0 30px",
+                                    fontWeight: "bold",
+                                    height: "40px",
+                                    borderRadius: "10px",
+                                    fontSize: "14px"
+                                }
+                            }}
                         />
                         {this.state.residents.map((residents, index) => (
                             <VillagerTab
@@ -174,16 +201,40 @@ class CurrentResidents extends Component {
                             renderItem={(item, highlighted) =>
                             <div
                                 key={item.id}
-                                style={{ backgroundColor: highlighted ? '#c4eede' : 'transparent', padding: "5px 10px", borderBottomStyle: "dashed"}}
+                                style={{
+                                    backgroundColor: highlighted ? '#c4eede' : 'transparent',
+                                    padding: "5px 10px",
+                                    borderBottomStyle: "dashed"
+                                }}
                             >
                                 {item.name}
                             </div>
                             }
-                            menuStyle={{background: "#e2faf1", color: "#55a290", marginTop: "5px", maxHeight: "50vh", overflow: "auto", position: "absolute", zIndex: 2}}
+                            menuStyle={{
+                                background: "#e2faf1",
+                                color: "#55a290",
+                                marginTop: "0px",
+                                maxHeight: "50vh",
+                                overflow: "auto",
+                                position: "absolute",
+                                zIndex: 2,
+                                left: "10px"
+                            }}
                             value={this.state.dreamieValue}
                             onChange={this.handleDreamieInput}
                             onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}
-                            inputProps={{ placeholder: "Enter dreamies...", style: { background: "#e2faf1", border: 0, color: "#55a290", padding: "0 10px", fontWeight: "bold", height: "40px", borderRadius: "10px"} }}
+                            inputProps={{
+                                placeholder: "Enter dreamies...",
+                                style: {
+                                    background: "#e2faf1",
+                                    border: 0,
+                                    color: "#55a290",
+                                    padding: "0 10px 0 30px",
+                                    fontWeight: "bold",
+                                    height: "40px",
+                                    borderRadius: "10px",
+                                }
+                            }}
                         />
                         {this.state.dreamies.map((dreamie, index) => (
                             <VillagerTab
@@ -198,6 +249,11 @@ class CurrentResidents extends Component {
                             />
                         ))}
                     </div>
+                </div>
+                <div className="ticket-container">Use
+                    <NumberInput />
+                    <NMT />
+                    Nook Miles Tickets
                 </div>
                 <SubmitButton click={this.searchDreamies} />
             </div>

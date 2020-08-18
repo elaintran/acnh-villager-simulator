@@ -1,0 +1,17 @@
+.nmt-number {
+    background-color: #e2faf1;
+    border: 0;
+    width: 50px;
+    border-radius: 5px;
+    margin: 0 5px 0 10px;
+    text-align: center;
+    color: #55a290;
+    font-weight: bold;
+    height: 30px;
+    font-size: 15px;
+}
+
+.nmt-number::placeholder {
+    color: #55a290;
+    font-weight: bold;
+}

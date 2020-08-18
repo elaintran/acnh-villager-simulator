@@ -6,6 +6,8 @@
     width: calc(50% - 40px);
     margin: auto;
     padding: 10px;
+    font-size: 17px;
+    letter-spacing: 0.5px;
 }
 
 .submit:hover {
