@@ -4,6 +4,7 @@ import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
 import NMT from "../NMT";
 import NumberInput from "../NumberInput";
+import Title from "../Title";
 import "./style.css";
 
 class CurrentResidents extends Component {
@@ -135,6 +136,7 @@ class CurrentResidents extends Component {
     render() {
         return (
             <div>
+                <Title />
                 <div className="container">
                     <div className="search-container">
                         <Autocomplete
@@ -156,7 +158,7 @@ class CurrentResidents extends Component {
                             menuStyle={{
                                 background: "#e2faf1",
                                 color: "#55a290",
-                                marginTop: "0px",
+                                top: "55px",
                                 maxHeight: "50vh",
                                 overflow: "auto",
                                 position: "absolute",
@@ -213,7 +215,7 @@ class CurrentResidents extends Component {
                             menuStyle={{
                                 background: "#e2faf1",
                                 color: "#55a290",
-                                marginTop: "0px",
+                                top: "55px",
                                 maxHeight: "50vh",
                                 overflow: "auto",
                                 position: "absolute",

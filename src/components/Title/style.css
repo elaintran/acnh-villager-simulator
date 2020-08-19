@@ -1,0 +1,15 @@
+.title {
+    background-color: #35ba9b;
+    color: white;
+    font-size: 23px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clap {
+    width: 45px;
+    margin-right: 10px;
+}

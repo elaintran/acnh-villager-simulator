@@ -3,7 +3,7 @@ import "./style.css";
 
 function NumberInput() {
     return (
-        <input type="text" placeholder="100" className="nmt-number" />
+        <input type="number" placeholder="100" className="nmt-number" />
     );
 }
 

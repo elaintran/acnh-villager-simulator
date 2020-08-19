@@ -1,5 +1,7 @@
 body {
 	color: #464a4f;
+	margin: 0;
+	background-img: url("./images/acnh-background.png");
 }
 
 input:focus {
