@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
+import TitleContainer from "../TitleContainer";
 import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
 import NMT from "../NMT";
 import NumberInput from "../NumberInput";
-import Title from "../Title";
 import "./style.css";
 
 class CurrentResidents extends Component {
@@ -136,7 +136,7 @@ class CurrentResidents extends Component {
     render() {
         return (
             <div>
-                <Title />
+                <TitleContainer/>
                 <div className="container">
                     <div className="search-container">
                         <Autocomplete

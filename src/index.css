@@ -1,4 +1,6 @@
 body {
 	background-color: #a6eddd;
-	font-family: "Nunito", sans-serif;
+	font-family: "Work Sans", sans-serif;
+	background-image: url("./images/pattern-confetti.jpg");
+	background-repeat: repeat;
 }

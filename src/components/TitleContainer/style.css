@@ -1,0 +1,29 @@
+.title-container {
+    background-color: #f8f8f0;
+    margin: 20px auto;
+    width: 45%;
+    padding: 20px 20px 40px;
+    border-radius: 30px;
+    position: relative;
+}
+
+.border {
+    border: 15px solid rgba(78, 168, 122, 0.8);
+}
+
+.title-container p {
+    text-align: center;
+    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    width: 80%;
+    margin: auto;
+    font-size: 17px;
+    color: #6b5c43;
+}
+
+.trees {
+    width: 31%;
+    position: absolute;
+    top: -20px;
+    right: -19%;
+}
