@@ -1,14 +1,15 @@
 .villager-tab {
-    background-color: #35ba9b;
+    background-color: #2baf91;
     display: flex;
     align-items: center;
     color: white;
     border-radius: 10px;
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 10px;
+    width: 92%;
+    margin: 10px auto;
     height: 35px;
     position: relative;
+    font-family: "Open Sans", sans-serif;
+    box-sizing: border-box;
 }
 
 .villager-icon {

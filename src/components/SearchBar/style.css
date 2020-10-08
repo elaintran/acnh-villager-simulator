@@ -1,6 +1,7 @@
 .search {
     color: #55a290;
     background-color: #e2faf1;
+    /* background-color: white; */
     padding: 8px 0;
     border-radius: 10px;
 }
@@ -18,7 +19,7 @@
 /*change placeholder font and color*/
 .search input, .search input::-webkit-input-placeholder {
     color: #55a290;
-    font-family: "Nunito", sans-serif;
+    /* font-family: "Nunito", sans-serif; */
     font-size: 15px;
 }
 

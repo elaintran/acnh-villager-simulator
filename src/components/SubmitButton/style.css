@@ -1,15 +1,22 @@
 .submit {
-    background-color: #35ba9b;
-    text-align: center;
+    background-color: #29957c;
     color: white;
     border-radius: 10px;
-    width: calc(50% - 40px);
+    width: calc(80% - 50px);
     margin: auto;
     padding: 10px;
     font-size: 17px;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .submit:hover {
     cursor: pointer;
+}
+
+.fa-arrow-right {
+    margin-left: 8px;
+    font-size: 13px;
 }

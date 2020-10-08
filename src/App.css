@@ -1,9 +1,13 @@
 body {
 	color: #464a4f;
 	margin: 0;
-	background-img: url("./images/acnh-background.png");
+	font-weight: 500;
 }
 
 input:focus {
   	outline: none;
+}
+
+#root {
+	margin: 4% 20px;
 }

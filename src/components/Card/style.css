@@ -1,0 +1,27 @@
+.card-container {
+    background-color: #e0f7ea;
+    border-radius: 10px;
+    position: relative;
+    width: 33.33%;
+    padding: 35px 20px 25px;
+    margin: 40px 15px 20px;
+}
+
+.card-number {
+    background-color: white;
+    padding: 5px 16px;
+    border-radius: 50%;
+    color: #827150;
+    font-weight: bold;
+    font-size: 30px;
+    border: 10px solid rgba(233, 217, 144, 0.85);
+}
+
+.number-container {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}

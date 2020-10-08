@@ -1,15 +1,13 @@
 .container {
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 80%;
     margin: auto;
 }
 
 .search-container {
     color: #55a290;
     padding: 8px 0;
-    margin-right: 20px;
-    width: 50%;
     position: relative;
 }
 
@@ -19,7 +17,7 @@
 }
 
 .search-container input {
-    width: 95%;
+    width: 100%;
 }
 
 .search-container::before {
@@ -45,6 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
     font-size: 18px;
+    flex-wrap: wrap;
 }

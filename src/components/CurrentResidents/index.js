@@ -5,6 +5,8 @@ import SubmitButton from "../SubmitButton";
 import VillagerTab from "../VillagerTab";
 import NMT from "../NMT";
 import NumberInput from "../NumberInput";
+import Card from "../Card";
+import CardTitle from "../CardTitle";
 import "./style.css";
 
 class CurrentResidents extends Component {
@@ -138,124 +140,137 @@ class CurrentResidents extends Component {
             <div>
                 <TitleContainer/>
                 <div className="container">
-                    <div className="search-container">
-                        <Autocomplete
-                            items={this.state.filteredVillagers}
-                            shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                            getItemValue={item => item.name}
-                            renderItem={(item, highlighted) =>
-                            <div
-                                key={item.id}
-                                style={{
-                                    backgroundColor: highlighted ? '#c4eede' : 'transparent',
-                                    padding: "5px 10px",
-                                    borderBottomStyle: "dashed"
-                                }}
-                            >
-                                {item.name}
-                            </div>
-                            }
-                            menuStyle={{
-                                background: "#e2faf1",
-                                color: "#55a290",
-                                top: "55px",
-                                maxHeight: "50vh",
-                                overflow: "auto",
-                                position: "absolute",
-                                zIndex: 2,
-                                left: "10px"
-                            }}
-                            value={this.state.residentValue}
-                            onChange={this.handleResidentInput}
-                            onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
-                            inputProps={{
-                                placeholder: "Enter current residents...",
-                                style: {
-                                    background: "#e2faf1",
-                                    border: 0,
-                                    color: "#55a290",
-                                    padding: "0 10px 0 30px",
-                                    fontWeight: "bold",
-                                    height: "40px",
-                                    borderRadius: "10px",
-                                    fontSize: "14px"
+                    <Card number="1">
+                        <CardTitle>Current Residents</CardTitle>
+                        <div className="search-container">
+                            <Autocomplete
+                                items={this.state.filteredVillagers}
+                                shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                                getItemValue={item => item.name}
+                                renderItem={(item, highlighted) =>
+                                <div
+                                    key={item.id}
+                                    style={{
+                                        backgroundColor: highlighted ? '#c4eede' : 'transparent',
+                                        padding: "5px 10px",
+                                        borderBottomStyle: "dashed"
+                                    }}
+                                >
+                                    {item.name}
+                                </div>
                                 }
-                            }}
-                        />
-                        {this.state.residents.map((residents, index) => (
-                            <VillagerTab
-                                id={index}
-                                index={residents.id}
-                                villager={residents.name}
-                                species={residents.species}
-                                personality={residents.personality}
-                                icon={residents.icon}
-                                search="residents"
-                                remove={this.removeVillager}
-                            />
-                        ))}
-                    </div>  
-                    <div className="search-container">
-                        <Autocomplete
-                            items={this.state.filteredVillagers}
-                            shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                            getItemValue={item => item.name}
-                            renderItem={(item, highlighted) =>
-                            <div
-                                key={item.id}
-                                style={{
-                                    backgroundColor: highlighted ? '#c4eede' : 'transparent',
-                                    padding: "5px 10px",
-                                    borderBottomStyle: "dashed"
-                                }}
-                            >
-                                {item.name}
-                            </div>
-                            }
-                            menuStyle={{
-                                background: "#e2faf1",
-                                color: "#55a290",
-                                top: "55px",
-                                maxHeight: "50vh",
-                                overflow: "auto",
-                                position: "absolute",
-                                zIndex: 2,
-                                left: "10px"
-                            }}
-                            value={this.state.dreamieValue}
-                            onChange={this.handleDreamieInput}
-                            onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}
-                            inputProps={{
-                                placeholder: "Enter dreamies...",
-                                style: {
+                                menuStyle={{
                                     background: "#e2faf1",
-                                    border: 0,
                                     color: "#55a290",
-                                    padding: "0 10px 0 30px",
-                                    fontWeight: "bold",
-                                    height: "40px",
-                                    borderRadius: "10px",
-                                }
-                            }}
-                        />
-                        {this.state.dreamies.map((dreamie, index) => (
-                            <VillagerTab
-                                id={index}
-                                index={dreamie.id}
-                                villager={dreamie.name}
-                                species={dreamie.species}
-                                personality={dreamie.personality}
-                                icon={dreamie.icon}
-                                search="dreamie"
-                                remove={this.removeVillager}
+                                    top: "55px",
+                                    maxHeight: "50vh",
+                                    overflow: "auto",
+                                    position: "absolute",
+                                    zIndex: 2,
+                                    left: "10px"
+                                }}
+                                value={this.state.residentValue}
+                                onChange={this.handleResidentInput}
+                                onSelect={value => this.setState({ residentValue: value }, () => this.findResidents(this.state.residentValue))}
+                                inputProps={{
+                                    placeholder: "Enter current residents...",
+                                    style: {
+                                        background: "white",
+                                        border: 0,
+                                        color: "#55a290",
+                                        padding: "0 10px 0 30px",
+                                        fontWeight: "bold",
+                                        height: "40px",
+                                        borderRadius: "10px",
+                                        fontSize: "14px",
+                                        boxSizing: "border-box",
+                                        marginBottom: "4px"
+                                    }
+                                }}
                             />
-                        ))}
-                    </div>
-                </div>
-                <div className="ticket-container">Use
-                    <NumberInput />
-                    <NMT />
-                    Nook Miles Tickets
+                            {this.state.residents.map((residents, index) => (
+                                <VillagerTab
+                                    id={index}
+                                    index={residents.id}
+                                    villager={residents.name}
+                                    species={residents.species}
+                                    personality={residents.personality}
+                                    icon={residents.icon}
+                                    search="residents"
+                                    remove={this.removeVillager}
+                                />
+                            ))}
+                        </div>  
+                    </Card>
+                    <Card number="2">
+                        <CardTitle>Dream Villagers</CardTitle>
+                        <div className="search-container">
+                            <Autocomplete
+                                items={this.state.filteredVillagers}
+                                shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                                getItemValue={item => item.name}
+                                renderItem={(item, highlighted) =>
+                                <div
+                                    key={item.id}
+                                    style={{
+                                        backgroundColor: highlighted ? '#c4eede' : 'transparent',
+                                        padding: "5px 10px",
+                                        borderBottomStyle: "dashed"
+                                    }}
+                                >
+                                    {item.name}
+                                </div>
+                                }
+                                menuStyle={{
+                                    background: "#e2faf1",
+                                    color: "#55a290",
+                                    top: "55px",
+                                    maxHeight: "50vh",
+                                    overflow: "auto",
+                                    position: "absolute",
+                                    zIndex: 2,
+                                    left: "10px"
+                                }}
+                                value={this.state.dreamieValue}
+                                onChange={this.handleDreamieInput}
+                                onSelect={value => this.setState({ dreamieValue: value }, () => this.findDreamies(this.state.dreamieValue))}
+                                inputProps={{
+                                    placeholder: "Enter dream villagers...",
+                                    style: {
+                                        background: "white",
+                                        border: 0,
+                                        color: "#55a290",
+                                        padding: "0 10px 0 30px",
+                                        fontWeight: "bold",
+                                        height: "40px",
+                                        borderRadius: "10px",
+                                        boxSizing: "border-box",
+                                        marginBottom: "4px"
+                                    }
+                                }}
+                            />
+                            {this.state.dreamies.map((dreamie, index) => (
+                                <VillagerTab
+                                    id={index}
+                                    index={dreamie.id}
+                                    villager={dreamie.name}
+                                    species={dreamie.species}
+                                    personality={dreamie.personality}
+                                    icon={dreamie.icon}
+                                    search="dreamie"
+                                    remove={this.removeVillager}
+                                />
+                            ))}
+                        </div>
+                    </Card>
+                    <Card number="3">
+                        <CardTitle>Nook Miles Tickets</CardTitle>
+                        <div className="ticket-container">Use
+                            <NumberInput />
+                            <NMT />
+                            NMTs
+                        </div>
+                    </Card>
                 </div>
                 <SubmitButton click={this.searchDreamies} />
             </div>
