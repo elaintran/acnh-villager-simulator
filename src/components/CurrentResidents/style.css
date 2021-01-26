@@ -47,3 +47,22 @@
     font-size: 18px;
     flex-wrap: wrap;
 }
+
+@media (max-width: 1150px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        width: 72%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 630px) {
+    .container {
+        width: 95%;
+    }
+}
